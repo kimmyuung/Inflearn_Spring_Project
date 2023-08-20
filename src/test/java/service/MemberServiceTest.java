@@ -1,11 +1,13 @@
 package service;
 
-import domain.Member;
+import InFlearn_Spring_Project.domain.Member;
+import InFlearn_Spring_Project.repository.MemoryMemberRepository;
+import InFlearn_Spring_Project.service.MemberService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repository.MemoryMemberRepository;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static  org.assertj.core.api.Assertions.*;
@@ -22,7 +24,7 @@ class MemberServiceTest {
 
     @AfterEach // test 코드 실행 후 실행되는 코드
     public void afterEach() {
-        repository.clearstore();
+        repository.clearStore();
     }
 
     @Test

@@ -1,4 +1,4 @@
-package controller;
+package InFlearn_Spring_Project.controller;
 
 public class MemberForm {
     private String name;

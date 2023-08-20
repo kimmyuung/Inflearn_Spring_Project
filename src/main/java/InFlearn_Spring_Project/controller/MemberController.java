@@ -1,23 +1,23 @@
-package controller;
+package InFlearn_Spring_Project.controller;
 
-import domain.Member;
+
+
+import InFlearn_Spring_Project.domain.Member;
+import InFlearn_Spring_Project.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import service.MemberService;
 
 import java.util.List;
 
-@Controller // 컴포넌트 스캔 방식
+@Controller
 public class MemberController {
+    private final MemberService memberService;
 
-    //@Autowired  // 필드 자동 주입
-    private MemberService memberService;
-
-    @Autowired // 생성자 자동 주입을 많이 사용
-    public void setMemberService(MemberService memberService) {
+    @Autowired
+    public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
@@ -25,14 +25,17 @@ public class MemberController {
     public String createForm() {
         return "members/createMemberForm";
     }
+
     @PostMapping("/members/new")
     public String create(MemberForm form) {
+        //MemberForm의 name에 html에서 받아온 name이 들어감
         Member member = new Member();
         member.setName(form.getName());
 
         memberService.join(member);
-
+        //메인으로 리다이렉트하기
         return "redirect:/";
+
     }
 
     @GetMapping("/members")
